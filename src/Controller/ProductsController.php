@@ -5,10 +5,12 @@ namespace App\Controller;
 use Cake\ORM\TableRegistry;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\I18n\Time;
+use Cake\Log\Log;
+
 class ProductsController extends AppController {
 
     public function index() {
-
+        $this->log("call index", "info");
         $menus = TableRegistry::get('menu');
         $listMenus = $menus->find();
         $products = TableRegistry::get('products');
@@ -24,14 +26,15 @@ class ProductsController extends AppController {
         $index = $access->access_index;
         $index ++;
         $access->access_index = $index;
-        $newDate =  date("Y-m-d H:i:s");
-        $access->updatedDate=$newDate;
+        $newDate = date("Y-m-d H:i:s");
+        $access->updatedDate = $newDate;
         if (!$access_table->save($access)) {
             echo "update index fail";
         }
     }
 
     public function view($id) {
+        $this->log("call view $id", "info");
         $menus = TableRegistry::get('menu');
         $listMenus = $menus->find();
         $products = TableRegistry::get('products');
@@ -47,14 +50,15 @@ class ProductsController extends AppController {
         $index = $access->access_index;
         $index ++;
         $access->access_index = $index;
-        $newDate =  date("Y-m-d H:i:s");
-        $access->updatedDate=$newDate;
+        $newDate = date("Y-m-d H:i:s");
+        $access->updatedDate = $newDate;
         if (!$access_table->save($access)) {
             echo "update index fail";
         }
     }
 
     public function detail($type, $id) {
+        $this->log("call detail $type $id", "info");
         $menus = TableRegistry::get('menu');
         $listMenus = $menus->find();
         $products = TableRegistry::get('products');
@@ -73,8 +77,8 @@ class ProductsController extends AppController {
         $index = $access->access_index;
         $index ++;
         $access->access_index = $index;
-        $newDate =  date("Y-m-d H:i:s");
-        $access->updatedDate=$newDate;
+        $newDate = date("Y-m-d H:i:s");
+        $access->updatedDate = $newDate;
         if (!$access_table->save($access)) {
             echo "update index fail";
         }
